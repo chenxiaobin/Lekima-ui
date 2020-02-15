@@ -14,6 +14,7 @@
 </template>
 <script>
 export default {
+  name: 'leSwitch',
   model: {
     prop: 'value',
     event: 'change'

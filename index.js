@@ -12,6 +12,7 @@ import Select from './src/components/select'
 import Subscript from './src/components/subscript'
 import Form from './src/components/form'
 import Switch from './src/components/switch'
+import Badge from './src/components/badge'
 
 const DecorationV1 = Decoration.v1
 const DecorationV2 = Decoration.v2
@@ -38,7 +39,8 @@ const view = {
   Select,
   Subscript,
   Form,
-  Switch
+  Switch,
+  Badge
 }
 
 const install = function (Vue = {}) {
@@ -77,6 +79,7 @@ export {
   Select,
   Subscript,
   Form,
-  Switch
+  Switch,
+  Badge
 }
 export default API

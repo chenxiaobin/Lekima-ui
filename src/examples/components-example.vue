@@ -17,15 +17,6 @@
       {{selectValue}}
       {{JSON.stringify(selectObject2)}}
     </div>
-    <!-- <div class="item-container">
-      <le-option
-        v-for="item in options"
-        :key="item.value"
-        :label="item.label"
-        :value="item.value"
-        :disabled="item.disabled">
-      </le-option>
-    </div> -->
     <div class="item-container">
       <le-radio-group v-model="radioModel" :options="options" @change="(data)=>radioObject=data" checked-style="gou"></le-radio-group>
       {{radioModel}}
@@ -95,7 +86,21 @@
     <div class="item-container item-container-400">
       <le-form :config="config" @form-data="handleFormData"></le-form>
     </div>
-
+    <div class="item-container">
+      <le-badge class="demo-badge-box" :dot="true">
+        <a href="#" class="demo-badge"></a>
+      </le-badge>
+      <le-badge class="demo-badge-box" :count="3">
+        <a href="#" class="demo-badge"></a>
+      </le-badge>
+      <le-badge class="demo-badge-box" :count="100">
+        <a href="#" class="demo-badge"></a>
+      </le-badge>
+      <le-badge class="demo-badge-box" text="new">
+        <a href="#" class="demo-badge"></a>
+      </le-badge>
+      <le-badge class="demo-badge-box" :count="10" color="blue"></le-badge>
+    </div>
   </div>
 </template>
 <script>
@@ -108,9 +113,10 @@ import LeButton from '../components/button'
 import LeForm from '../components/form'
 import LeSubscript from '../components/subscript'
 import LeSwitch from '../components/switch'
+import LeBadge from '../components/badge'
 export default {
   components: {
-    LeInput, LeSelect, LeRadioGroup, LeCheckboxGroup, LeButton, LeForm, LeSubscript, LeSwitch
+    LeInput, LeSelect, LeRadioGroup, LeCheckboxGroup, LeButton, LeForm, LeSubscript, LeSwitch, LeBadge
   },
   data () {
     return {
@@ -294,5 +300,14 @@ export default {
   position: relative;
   overflow: hidden;
 }
-
+.demo-badge-box{
+  margin-right: 10px;
+}
+.demo-badge{
+  width: 42px;
+  height: 42px;
+  background: #eee;
+  border-radius: 6px;
+  display: inline-block;
+}
 </style>
