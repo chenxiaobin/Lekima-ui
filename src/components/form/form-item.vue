@@ -41,26 +41,35 @@ import leInput from '../input'
 import leSelect from '../select'
 import leRadioGroup from '../radio-group'
 import leCheckboxGroup from '../checkbox-group'
+/**
+ * 基础组件，表单项组件
+ * @displayName Form Item
+ */
 export default {
-  name: 'le-form-item',
-  /**
-   * {
-   *    label: 名称
-   *    type: 类型
-   *    width: 宽度
-   *    unit: 单位
-   *    required: 是否必填
-   *    validator: (value) => {
-   *      return '提示信息'
-   *    }
-   * }
-   */
+  name: 'leFormItem',
   model: {
     prop: 'value',
     event: 'form-change'
   },
   props: {
+    /**
+     * 配置数据
+     * {
+     *    label: 名称
+     *    type: 类型
+     *    width: 宽度
+     *    unit: 单位
+     *    required: 是否必填
+     *    validator: (value) => {
+     *      return '提示信息'
+     *    }
+     * }
+     */
     datas: Object,
+    /**
+     * 值数据
+     * @model
+     */
     value: [String, Array, Number, Object]
   },
   data () {
@@ -140,6 +149,9 @@ export default {
         this.$emit('form-change', value.value)
         break
       default:
+        /**
+         * 表单项修改变更
+         */
         this.$emit('form-change', value)
         break
       }

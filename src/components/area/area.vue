@@ -92,12 +92,15 @@
 </template>
 
 <script>
-
 import axios from 'axios'
-import { Utils } from '../../utils/utils'
-import areaStep from './areaStep'
-import areaTab from './areaTab'
+import Utils from '../../utils/utils'
+import areaStep from './components/areaStep'
+import areaTab from './components/areaTab'
 import leIcon from '../icon'
+/**
+ * 移动端行政区划级联组件
+ * @displayName Area
+ */
 export default {
   name: 'leArea',
   components: { areaStep, areaTab, leIcon },
@@ -171,9 +174,9 @@ export default {
       this.$emit('closePopup', false)
     },
     /**
-                                   * 搜索地区
-                                   * @param {item} 搜索下拉框选中值
-                                   */
+     * 搜索地区
+     * @param {item} 搜索下拉框选中值
+     */
     chooseArea (item) {
       let length = item.id.length
       this.selectedIndex = null
@@ -218,10 +221,10 @@ export default {
       }
     },
     /**
-                                  * 搜索地区
-                                  * @param {item} 选中项
-                                  * @param {type} 地区级别类型
-                                  */
+      * 搜索地区
+      * @param {item} 选中项
+      * @param {type} 地区级别类型
+      */
     dealingId (item, type) {
       if (type === 'village') {
         let communityId = item.id.substring(0, 9)

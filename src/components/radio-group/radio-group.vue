@@ -10,6 +10,10 @@
 </template>
 <script>
 import leRadio from '../radio'
+/**
+ * 基础组件，单选框组
+ * @displayName Radio Group
+ */
 export default {
   name: 'leRadioGroup',
   model: {
@@ -17,13 +21,22 @@ export default {
     event: 'radio-change'
   },
   props: {
+    /**
+     * 选中值
+     */
     value: [String, Number],
+    /**
+     * 单选列表数据
+     */
     options: {
       type: Array,
       default () {
         return []
       }
     },
+    /**
+     * 选中样式
+     */
     checkedStyle: {
       type: String,
       default: 'default' // gou
@@ -41,6 +54,9 @@ export default {
     handleChange (item) {
       this.radioValue = item.value
       this.$emit('radio-change', this.radioValue)
+      /**
+       * 选中改变事件
+       */
       this.$emit('change', item)
     }
   }

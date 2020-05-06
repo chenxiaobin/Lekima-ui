@@ -128,4 +128,4 @@ let Utils = {
   }
 }
 
-export { Utils }
+export default Utils

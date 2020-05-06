@@ -14,6 +14,10 @@
   </div>
 </template>
 <script>
+/**
+ * 复选框，基础组件，单独用于标记切换某种状态。
+ * @displayName Checkbox
+ */
 export default {
   name: 'leCheckbox',
   model: {
@@ -21,11 +25,25 @@ export default {
     event: 'change'
   },
   props: {
+    /**
+     * 单选项
+     * {
+          value: '选项1',
+          label: '黄金糕',
+          disabled: true
+        }
+     */
     option: {
       type: [String, Object],
       required: true
     },
+    /**
+     * 是否选中
+     */
     checked: Boolean,
+    /**
+     * 是否开启全选
+     */
     indeterminate: Boolean
   },
   data () {

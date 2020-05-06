@@ -1,5 +1,6 @@
 <template>
   <span v-if="dot" class="le-badge" ref="badge">
+    <!-- @slot 默认内容 -->
     <slot></slot>
     <sup class="le-badge-dot" :style="styles" v-show="badge"></sup>
   </span>
@@ -9,30 +10,58 @@
   </span>
 </template>
 <script>
+/**
+ * 徽标数，主要用于通知未读数的角标，提醒用户点击。
+ * @displayName Badge
+ */
 export default {
   name: 'leBadge',
   props: {
+    /**
+     * 显示数量
+     */
     count: Number,
+    /**
+     * 是否显示为红点，红点优先
+     */
     dot: {
       type: Boolean,
       default: false
     },
+    /**
+     * 显示文本
+     */
     text: {
       type: String,
       default: ''
     },
+    /**
+     * 数值为0是否显示
+     */
     showZero: {
       type: Boolean,
       default: false
     },
+    /**
+     * 徽标偏移
+     */
     offset: {
       type: Array
     },
+    /**
+     * 自定义样式名
+     */
     className: String,
+    /**
+     * 显示数值最大极值，超出以+代替
+     */
     overflowCount: {
       type: [Number, String],
       default: 99
     },
+    /**
+     * 徽标背景颜色
+     */
     color: String
   },
   data () {

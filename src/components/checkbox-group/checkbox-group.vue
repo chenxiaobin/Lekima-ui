@@ -16,6 +16,10 @@
 </template>
 <script>
 import leCheckbox from '../checkbox'
+/**
+ * 复选框，基础组件，主要用于一组可选项多项选择，或者单独用于标记切换某种状态。
+ * @displayName Checkbox Group
+ */
 export default {
   name: 'leCheckboxGroup',
   model: {
@@ -23,13 +27,22 @@ export default {
     event: 'checkbox-change'
   },
   props: {
+    /**
+     * 选中值
+     */
     value: Array,
+    /**
+     * 复选列表数据
+     */
     options: {
       type: Array,
       default () {
         return []
       }
     },
+    /**
+     * 是否全选
+     */
     indeterminate: Boolean
   },
   data () {

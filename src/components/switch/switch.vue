@@ -6,13 +6,19 @@
           }"
           :style="switchStyle">
       <span class="le-switch-inner">
+        <!-- @slot 自定义开时显示内容 -->
         <slot name="open" v-if="value"></slot>
-        <slot name="close" v-else></slot>
+        <!-- @slot 自定义关时显示内容 -->
+        <slot name="close" v-if="!value"></slot>
       </span>
     </span>
   </div>
 </template>
 <script>
+/**
+ * 基础组件，在两种状态间切换时用到的开关选择器。
+ * @displayName Switch
+ */
 export default {
   name: 'leSwitch',
   model: {
@@ -20,11 +26,21 @@ export default {
     event: 'change'
   },
   props: {
+    /**
+     * 是否开关
+     * @model
+     */
     value: {
       type: [String, Number, Boolean],
       default: false
     },
+    /**
+     * 定义打开时的背景色
+     */
     trueColor: String,
+    /**
+     * 定义打关时的背景色
+     */
     falseColor: String
   },
   data () {
@@ -50,6 +66,10 @@ export default {
   },
   methods: {
     handleClick () {
+      /**
+       * 开关变化时触发事件
+       * @property {boolean} value
+       */
       this.$emit('change', !this.value)
     }
   }

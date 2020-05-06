@@ -13,6 +13,10 @@
   </div>
 </template>
 <script>
+/**
+ * 基础组件，单选框
+ * @displayName Radio
+ */
 export default {
   name: 'leRadio',
   model: {
@@ -20,11 +24,25 @@ export default {
     event: 'change'
   },
   props: {
+    /**
+     * 单选项
+     * {
+          value: '选项1',
+          label: '黄金糕',
+          disabled: true
+        }
+     */
     option: {
       type: [String, Object],
       required: true
     },
+    /**
+     * 选中项
+     */
     checked: Boolean,
+    /**
+     * 选中框样式
+     */
     checkedStyle: String
   },
   data () {
@@ -34,6 +52,9 @@ export default {
     handleClick () {
       let { value, disabled } = this.option
       if (value && !disabled) {
+        /**
+         * 选中状态变更事件
+         */
         this.$emit('change', this.option)
       }
     }

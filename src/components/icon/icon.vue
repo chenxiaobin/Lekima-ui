@@ -3,15 +3,34 @@
 </template>
 <script>
 const basicStyle = 'iconfont'
+/**
+ * 字体图标
+ * @displayName Icon
+ */
 export default {
   name: 'leIcon',
   props: {
+    /**
+     * iconfont对应的class
+     */
     type: {
       type: String
     },
+    /**
+     * 字体大小
+     */
     size: [Number],
+    /**
+     * 字体颜色
+     */
     color: String,
+    /**
+     * 使用url链接图片
+     */
     url: String,
+    /**
+     * 图片大小
+     */
     urlSize: {
       type: String,
       default: '20px'

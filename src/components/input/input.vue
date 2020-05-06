@@ -1,7 +1,10 @@
 <template>
   <div class="le-input">
     <template v-if="type != 'textarea'">
-      <div class="le-input-prepend" v-if="prepend" v-show="slotReady"><slot name="prepend"></slot></div>
+      <div class="le-input-prepend" v-if="prepend" v-show="slotReady">
+        <!-- @slot 输入框前置内容，只对 type="text" 有效 -->
+        <slot name="prepend"></slot>
+      </div>
       <div class="le-input-main" :class="[{
         'le-input--prepend-append': prepend || append
       }]">
@@ -17,6 +20,7 @@
           @blur="handleChange" />
         <!-- 前置内容 -->
         <span class="le-input-icon le-input-prefix" v-if="$slots.prefix || prefixIcon">
+          <!-- @slot 输入框头部内容，只对 type="text" 有效 -->
           <slot name="prefix"></slot>
           <i v-if="prefixIcon"
             :class="prefixIcon">
@@ -25,13 +29,17 @@
 
         <!-- 后置内容 -->
         <span class="le-input-icon le-input-suffix" v-if="$slots.suffix || suffixIcon">
+          <!-- @slot 输入框尾部内容，只对 type="text" 有效 -->
           <slot name="suffix"></slot>
           <i v-if="suffixIcon"
             :class="suffixIcon">
           </i>
         </span>
       </div>
-      <div class="le-input-append" v-if="append" v-show="slotReady"><slot name="append"></slot></div>
+      <div class="le-input-append" v-if="append" v-show="slotReady">
+        <!-- @slot 输入框后置内容，只对 type="text" 有效 -->
+        <slot name="append"></slot>
+      </div>
     </template>
     <template v-else>
 
@@ -39,7 +47,11 @@
   </div>
 </template>
 <script>
-import { isExistValue } from '../../utils/utils2'
+import Utils from '../../utils/utils2'
+/**
+ * 基础组件，输入框
+ * @displayName Input
+ */
 export default {
   name: 'leInput',
   model: {
@@ -47,32 +59,57 @@ export default {
     event: 'change'
   },
   props: {
+    /**
+     * 输入框类型
+     * @values text / textarea / password / url / email / date / number/ tel
+     */
     type: {
       validator (value) {
-        return isExistValue(value, ['text', 'textarea', 'password', 'url', 'email', 'date', 'number', 'tel'])
+        return Utils.isExistValue(value, ['text', 'textarea', 'password', 'url', 'email', 'date', 'number', 'tel'])
       },
       default: 'text'
     },
+    /**
+     * 输入框值
+     */
     value: {
       type: [String, Number],
       default: ''
     },
+    /**
+     * 输入框提示文字
+     */
     placeholder: {
       type: String,
       default: ''
     },
+    /**
+     * 输入框最大输入长度
+     */
     maxlength: {
       type: Number
     },
+    /**
+     * 是否禁用
+     */
     disabled: {
       type: Boolean,
       default: false
     },
+    /**
+     * 是否只读
+     */
     readonly: {
       type: Boolean,
       default: false
     },
+    /**
+     * 输入框头部图标
+     */
     suffixIcon: String,
+    /**
+     * 输入框尾部图标
+     */
     prefixIcon: String
   },
   data () {
@@ -99,6 +136,9 @@ export default {
       this.setCurrentValue(val)
     },
     currentValue () {
+      /**
+       * 不对外开放
+       */
       this.$emit('update:value', this.currentValue)
     }
   },
@@ -118,6 +158,10 @@ export default {
       this.currentValue = value
     },
     handleChange () {
+      /**
+       * 仅在输入框失去焦点或用户按下回车时触发
+       * @property value 变更值
+       */
       this.$emit('change', this.currentValue)
     },
     sExistValue (value, validList) {

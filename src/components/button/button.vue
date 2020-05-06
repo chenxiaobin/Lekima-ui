@@ -18,12 +18,18 @@
     ]"
   >
     <i class="iconfont" :class="icon" v-if="icon && !loading"></i>
-    <span v-if="$slots.default"><slot></slot></span>
+    <span v-if="$slots.default">
+      <slot></slot>
+    </span>
   </button>
 </template>
 <script>
+/**
+ * 按钮，基础组件，触发业务逻辑时使用。
+ * @displayName Button
+ */
 export default {
-  name: 'ElButton',
+  name: 'leButton',
   inject: {
     elForm: {
       default: ''
@@ -33,30 +39,66 @@ export default {
     }
   },
   props: {
+    /**
+     * 类型
+     * @values primary / success / warning / danger / info / text
+     */
     type: {
       type: String,
       default: 'default'
     },
+    /**
+     * 尺寸
+     * @values medium / small / mini
+     */
     size: String,
+    /**
+     * 图标类名
+     */
     icon: {
       type: String,
       default: ''
     },
+    /**
+     * 原生 type 属性
+     * @values button / submit / reset
+     */
     nativeType: {
       type: String,
       default: 'button'
     },
+    /**
+     * 是否加载中状态
+     */
     loading: Boolean,
+    /**
+     * 是否禁用状态
+     */
     disabled: Boolean,
+    /**
+     * 是否朴素按钮
+     */
     plain: Boolean,
+    /**
+     * 是否默认聚焦
+     */
     autofocus: Boolean,
+    /**
+     * 是否圆角按钮
+     */
     round: Boolean,
+    /**
+     * 是否圆形按钮
+     */
     circle: Boolean
   },
   computed: {
   },
   methods: {
     handleClick (event) {
+      /**
+       * 点击事件
+       */
       this.$emit('click', event)
     }
   }

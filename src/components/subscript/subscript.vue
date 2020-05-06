@@ -1,17 +1,30 @@
 <template>
   <div class="le-subscript" :style="styles">
+    <!-- @slot 角标内容 -->
     <slot></slot>
   </div>
 </template>
 <script>
+/**
+ * 基础组件，角标
+ * @displayName Subscript
+ */
 export default {
+  name: 'leSubscript',
   props: {
+    /**
+     * 角标位置
+     * @values topright, topleft, bottomright, bottomleft
+     */
     position: {
       type: String,
       validator (value) {
         return ['topright', 'topleft', 'bottomright', 'bottomleft'].indexOf(value) > -1
       }
     },
+    /**
+     * 角标颜色
+     */
     bgcolor: {
       type: String,
       default: '#FB5050'

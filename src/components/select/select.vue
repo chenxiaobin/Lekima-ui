@@ -41,12 +41,15 @@
 <script>
 import Vue from 'vue'
 import LeInput from '../input'
-import LeOption from './option'
-import LeOptionGroup from './option-group'
+import LeOption from './components/option'
+import LeOptionGroup from './components/option-group'
 import { VPopover, VClosePopover } from 'v-tooltip'
 Vue.directive('close-popover', VClosePopover)
 Vue.component('v-popover', VPopover)
-
+/**
+ * 基础组件，下拉框
+ * @displayName Select
+ */
 export default {
   name: 'leSelect',
   data () {
@@ -60,18 +63,30 @@ export default {
     LeInput, LeOption, LeOptionGroup
   },
   props: {
+    /**
+     * 下拉选中项
+     */
     value: {
       type: [String, Number, Array],
       default: ''
     },
+    /**
+     * 下拉数组
+     */
     options: {
       type: Array,
       required: true
     },
+    /**
+     * 提示描述
+     */
     placeholder: {
       type: String,
       default: '请选择'
     },
+    /**
+     * 是否只读
+     */
     readonly: {
       type: Boolean,
       default: true
@@ -82,6 +97,9 @@ export default {
       this.optionValue = this.value
     },
     optionValue () {
+      /**
+       * 不对外开放
+       */
       this.$emit('update:value', this.optionValue)
     }
   },
@@ -91,6 +109,9 @@ export default {
   methods: {
     handleSelected (data) {
       this.optionValue = data.label
+      /**
+       * 下拉选项改变触发事件
+       */
       this.$emit('change', data)
     },
     isGroupOptions (data) {

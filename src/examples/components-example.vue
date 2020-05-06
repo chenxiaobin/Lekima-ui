@@ -34,6 +34,95 @@
       </le-switch>
       {{switchModel}}
     </div>
+    <div class="item-container">
+      <le-badge class="demo-badge-box" :dot="true">
+        <a href="#" class="demo-badge"></a>
+      </le-badge>
+      <le-badge class="demo-badge-box" :count="3">
+        <a href="#" class="demo-badge"></a>
+      </le-badge>
+      <le-badge class="demo-badge-box" :count="100">
+        <a href="#" class="demo-badge"></a>
+      </le-badge>
+      <le-badge class="demo-badge-box" text="new">
+        <a href="#" class="demo-badge"></a>
+      </le-badge>
+      <le-badge class="demo-badge-box" :count="10" color="blue"></le-badge>
+    </div>
+    <div class="item-container item-container">
+      <le-rollinfo :height="60" :autoplay="2000">
+        <le-rollinfo-item><span style="color:#F00;"> 荐 </span>荣耀V9 3月超级钜惠！3月超级钜惠！3月超级钜惠！3月超级钜惠！3月超级钜惠！3月超级钜惠！3月超级钜惠！3月超级钜惠！</le-rollinfo-item>
+        <le-rollinfo-item><span style="color:#F00;"> 荐 </span>3.23京东超级品牌日格力盛典</le-rollinfo-item>
+        <le-rollinfo-item><span style="color:#F00;"> 荐 </span>京东服饰 早春新品低至7折</le-rollinfo-item>
+      </le-rollinfo>
+    </div>
+    <div class="item-container item-container">
+      <le-price
+          :price="100105865412541.01"
+          :decimalDigits="3"
+          :needSymbol="true"
+          :thousands="true"
+      />
+    </div>
+    <div class="item-container item-container">
+      <le-subscript position="topleft">最新一期</le-subscript>
+      <le-subscript position="topright" bgcolor="#FF9137">最新二期</le-subscript>
+      <le-subscript position="bottomleft" bgcolor="#6AC63D">最新三期</le-subscript>
+      <le-subscript position="bottomright" bgcolor="#12B7F5">最新四期</le-subscript>
+    </div>
+    <div class="item-container item-container" style="background:#0C1C35; ">
+      <le-number-card-v1
+        label="总产值"
+        :number="3123"
+        unit="亿元"
+        :labelStyle="{
+          fontSize: '17px',
+          fontWeight: 'bold'
+        }"
+        :numberStyle="{
+          color: '#FEC900',
+          fontSize: '25px'
+        }"
+        :unitStyle="{
+          fontSize: '12px',
+        }"/>
+    </div>
+    <div class="item-container item-container" style="background:#0C1C35;">
+      <le-number-card-v2
+        label="农业"
+        :number="1453"
+        unit="亿元"
+        :percentValue="0.58"
+        percentColor="blue"
+        :numberStyle="{
+          color: '#FEC900',
+          fontSize: '25px'
+        }"
+        :unitStyle="{
+            fontSize: '12px',
+        }"/>
+    </div>
+    <div class="item-container item-container" style="background:#0C1C35;">
+      <le-number-card-v3
+        label="村落总数"
+        :number="45467"
+        unit="个"
+        icon="ss-icon-fangzi"
+        :iconSize="60"
+        :labelStyle="{
+          fontSize: '15px'
+        }"
+        :numberStyle="{
+          color: '#FEC900',
+          fontSize: '25px'
+        }"
+        :unitStyle="{
+          fontSize: '12px',
+        }"
+        :iconStyle="{
+          color: '#FEC900'
+        }"/>
+    </div>
     <div class="item-container item-container-890">
       <le-button>普通</le-button>
       <le-button type="primary">primary</le-button>
@@ -78,33 +167,24 @@
       <le-button :round="true" size="mini">超小尺寸</le-button>
     </div>
     <div class="item-container item-container-400">
-      <le-subscript position="topleft">最新一期</le-subscript>
-      <le-subscript position="topright" bgcolor="#FF9137">最新二期</le-subscript>
-      <le-subscript position="bottomleft" bgcolor="#6AC63D">最新三期</le-subscript>
-      <le-subscript position="bottomright" bgcolor="#12B7F5">最新四期</le-subscript>
-    </div>
-    <div class="item-container item-container-400">
       <le-form :config="config" @form-data="handleFormData"></le-form>
     </div>
-    <div class="item-container">
-      <le-badge class="demo-badge-box" :dot="true">
-        <a href="#" class="demo-badge"></a>
-      </le-badge>
-      <le-badge class="demo-badge-box" :count="3">
-        <a href="#" class="demo-badge"></a>
-      </le-badge>
-      <le-badge class="demo-badge-box" :count="100">
-        <a href="#" class="demo-badge"></a>
-      </le-badge>
-      <le-badge class="demo-badge-box" text="new">
-        <a href="#" class="demo-badge"></a>
-      </le-badge>
-      <le-badge class="demo-badge-box" :count="10" color="blue"></le-badge>
+    <div class="item-container item-container-squre">
+      <le-number-card-v4
+        label="村落总数"
+        icon="ss-icon-fangzi"
+        :iconSize="70"
+        :iconStyle="{
+          color: '#FEC900'
+        }"
+        :labelStyle="{
+          fontSize: '15px'
+        }" />
     </div>
   </div>
 </template>
 <script>
-import '../../public/font/iconfont.css'
+import '../../public/font/iconfont/iconfont.css'
 import LeInput from '../components/input'
 import LeSelect from '../components/select'
 import LeRadioGroup from '../components/radio-group'
@@ -114,9 +194,28 @@ import LeForm from '../components/form'
 import LeSubscript from '../components/subscript'
 import LeSwitch from '../components/switch'
 import LeBadge from '../components/badge'
+import LeRollinfo from '../components/rollinfo'
+import LeRollinfoItem from '../components/rollinfo-item'
+import LePrice from '../components/price'
+import NumberCard from '../components/number-card'
 export default {
   components: {
-    LeInput, LeSelect, LeRadioGroup, LeCheckboxGroup, LeButton, LeForm, LeSubscript, LeSwitch, LeBadge
+    LeInput,
+    LeSelect,
+    LeRadioGroup,
+    LeCheckboxGroup,
+    LeButton,
+    LeForm,
+    LeSubscript,
+    LeSwitch,
+    LeBadge,
+    LeRollinfo,
+    LeRollinfoItem,
+    LePrice,
+    'leNumberCardV1': NumberCard.v1,
+    'leNumberCardV2': NumberCard.v2,
+    'leNumberCardV3': NumberCard.v3,
+    'leNumberCardV4': NumberCard.v4
   },
   data () {
     return {
@@ -282,10 +381,13 @@ export default {
 }
 .item-container{
   width: 290px;
-  height: 140px;
+  height: 100px;
   margin: 5px;
   border: 1px solid red;
   float: left;
+  background: #ffffff;
+  position: relative;
+  overflow: hidden;
 }
 .item-container-890 {
   width: 894px;
@@ -309,5 +411,11 @@ export default {
   background: #eee;
   border-radius: 6px;
   display: inline-block;
+}
+.item-container-squre{
+  width: 150px;
+  height: 150px;
+  position: relative;
+  overflow: hidden;
 }
 </style>

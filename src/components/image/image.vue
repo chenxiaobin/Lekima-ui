@@ -50,7 +50,6 @@
       </template>
     </van-image-preview>
   </div>
-
   <!-- <input class="js_upFile cover1"
            type="file"
            name="cover"
@@ -68,33 +67,43 @@
     </div>
     <div class="photo"
          id="preview"></div> -->
-
-  </div>
 </template>
 
 <script>
 
 import { ImagePreview, Dialog } from 'vant'
 import leIcon from '../icon'
+/**
+ * 图片查看组件
+ * @displayName Image
+ */
 export default {
   name: 'leImage',
   props: {
-    // 上传数量限制
+    /**
+     * 上传数量限制
+     */
     uploadNum: {
       type: Number,
       default: 9
     },
-    // 每行显示的图片数
+    /**
+     * 每行显示的图片数
+     */
     matrixNum: {
       type: Number,
       default: 3
     },
-    // 模式切换--上传模式/查看模式
+    /**
+     * 模式切换--上传模式/查看模式
+     */
     showMode: {
       type: String,
       default: 'upload'
     },
-    // 图片列表
+    /**
+     * 图片列表
+     */
     list: {
       type: Array
     }
@@ -112,9 +121,7 @@ export default {
     }
   },
   methods: {
-    /* 查看模式/上传模式--图片预览
-                                                                                                                                                                                                                            * @param {index} 图片索引
-                                                                                                                                                                                                                            * */
+    // 查看模式/上传模式--图片预览
     imgPreview (index) {
       if (this.showMode === 'view') {
         // vant 函数调用方式
@@ -146,9 +153,7 @@ export default {
         this.deleteImage()
       })
     },
-    /* 上传模式--切换图片的索引
-                                                                                                                                                                                                                            * @param {index} 图片索引
-                                                                                                                                                                                                                            * */
+    // 上传模式--切换图片的索引
     onChange (index) {
       this.index = index
     },
@@ -160,20 +165,6 @@ export default {
         title: '从相册选择'
       }]
       console.log(bts, 'bts')
-      // plus.nativeUI.actionSheet({
-      //   cancel: '取消',
-      //   buttons: bts
-      // },
-      // function (e) {
-      //   if (e.index === 1) {
-      //     // getImage()
-      //     console.log(111)
-      //   } else if (e.index === 2) {
-      //     console.log(222)
-      //     // galleryImgs()
-      //   }
-      // }
-      // )
     },
     // 上传文件后的回调函数
     afterRead (file) {

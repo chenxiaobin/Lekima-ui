@@ -1,5 +1,5 @@
 <template>
-  <div class="le-decoration-v1" ref="RefSvgV1">
+  <div class="le-decoration le-decoration-v1" ref="RefSvg">
     <svg :viewBox="svgViewBox" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <g id="a-side">
@@ -28,19 +28,42 @@
   </div>
 </template>
 <script>
+import MixinJs from '../../mixins/decoration-mixin'
+/**
+ * 标题装饰，标题装饰组件，装饰标题。
+ * 双边菱形装饰
+ * @example ../../docs/decoration/v1.md
+ * @displayName Decoration V1
+ */
 export default {
   name: 'leDecorationV1',
+  mixins: [MixinJs],
   props: {
+    /**
+     * 标题内容
+     */
     title: String,
+    /**
+     * 标题间距宽度，
+     */
     labelWidth: Number,
+    /**
+     * 装饰器颜色
+     */
     color: {
       type: String,
       default: '#0096FC'
     },
+    /**
+     * 装饰菱形单边个数
+     */
     drawCount: {
       type: Number,
       default: 4
     },
+    /**
+     * 是否闪烁
+     */
     isAnimate: {
       type: Boolean,
       default: true
@@ -48,9 +71,6 @@ export default {
   },
   data () {
     return {
-      svgWidth: null,
-      svgHeight: null,
-      svgViewBox: '',
       usePosition: [],
       rectW: 12,
       rectH: 14,
@@ -64,23 +84,11 @@ export default {
   },
   mounted () {
     this.$nextTick(() => {
-      this.svgWidth = (this.$refs.RefSvgV1 && this.$refs.RefSvgV1.offsetWidth) || 0
-      this.svgHeight = (this.$refs.RefSvgV1 && this.$refs.RefSvgV1.offsetHeight) || 0
-
       this.titleWidth = (this.$refs.RefSvgV1Title && this.$refs.RefSvgV1Title.offsetWidth) || 0
-
-      this.svgViewBox = this.getSvgViewBox()
       this.usePosition = this.getUsePosition()
     })
   },
   methods: {
-    getSvgViewBox () {
-      let viewBox = [0, 0, 0, 0]
-      if (this.svgWidth && this.svgHeight) {
-        viewBox = [-this.svgWidth / 2, -this.svgHeight / 2, this.svgWidth, this.svgHeight]
-      }
-      return viewBox.join(' ')
-    },
     getUsePosition () {
       let data = []
       for (let i = 0; i < this.drawCount; i++) {
@@ -101,16 +109,12 @@ export default {
         })
       }
       return data
-    },
-    getColorOpacity (color, nums, key) {
-      let perOpacity = Math.floor(255 * (1 - key / nums))
-      return color + perOpacity.toString(16)
     }
   }
 }
 </script>
 <style>
-.le-decoration-v1{
+.le-decoration{
   width: 100%;
   height: 100%;
   position: relative;
